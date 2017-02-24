@@ -31,14 +31,27 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private class ShowTextTask extends AsyncTask<Void, Void, Void> {
+    private class ShowTextTask extends AsyncTask<Void, Integer, Void> {
 
         protected Void doInBackground(Void...arg){
-            try {
+            /*try {
                 Thread.currentThread();
                 Thread.sleep(10000);
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e){
                 e.printStackTrace();
+            }*/
+            for (int progress=0; progress<=100 ;progress++)
+            {
+             try {
+                Thread.currentThread();
+                Thread.sleep(10);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+                    publishProgress(progress);
+                    progress++;
             }
             return null;
         }
@@ -48,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(Void... arg) {
-            textView.setText("Finished AsyncTask");
+            textView.clearComposingText();
         }
     }
 
